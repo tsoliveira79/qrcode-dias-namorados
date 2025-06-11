@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLOCAR TÍTULO ❤️</title>
+    <style>
+        /* Estilos CSS para deixar a página bonita */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #ffbebe, #ffe6f2); /* Fundo com gradiente suave */
+            color: #333;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 20px;
+            animation: fadeIn 2s ease-out; /* Animação de entrada */
+        }
+        h1 {
+            color: #d147a3; /* Um tom de rosa mais escuro */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .highlight {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e91e63; /* Um tom de rosa vibrante */
+            margin-top: 20px;
+            display: block; /* Garante que o span ocupe a linha inteira */
+        }
+        .heart {
+            color: #e91e63;
+            font-size: 2em;
+            animation: pulse 1.5s infinite; /* Animação de pulso para o coração */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="heart">❤️</span>
+        <h1>COLOCAR MENSAGEM ❤️!</h1>
+        <p id="mensagem-especial">
+            </p>
+        <span id="contagem-dias" class="highlight">
+            </span>
+        <p style="margin-top: 30px; font-size: 0.9em; color: #666;">
+            Com carinho, do seu amor.
+        </p>
+        <span class="heart">❤️</span>
+    </div>
+
+    <script>
+        // --- CONFIGURAÇÕES DA PÁGINA (JavaScript) ---
+
+        // A data de referência para a contagem de dias (AAAA-MM-DD)
+        // *** MANTENHA ESTA DATA EXATAMENTE IGUAL À DO SEU CÓDIGO PYTHON ***
+        const dataReferenciaStr = "2024-09-26"; 
+
+        // Sua mensagem especial para Biri (aqui no JavaScript)
+        const suaMensagem = "Meu amor, você é a pessoa mais incrível que já conheci. Cada dia ao seu lado é um presente.";
+
+        // --- LÓGICA DE CÁLCULO E EXIBIÇÃO ---
+
+        function calcularEDisplayMensagem() {
+            const dataReferencia = new Date(dataReferenciaStr + "T00:00:00"); // Adiciona T00:00:00 para evitar problemas de fuso horário
+            const dataAtual = new Date();
+
+            // Reseta a hora para o início do dia para evitar problemas com fuso horário ou horas
+            dataReferencia.setHours(0, 0, 0, 0);
+            dataAtual.setHours(0, 0, 0, 0);
+
+            const diferencaTempo = dataAtual.getTime() - dataReferencia.getTime();
+            // Converte milissegundos para dias
+            const diferencaDias = Math.floor(diferencaTempo / (1000 * 60 * 60 * 24));
+
+            let mensagemContagem;
+            if (diferencaDias < 0) {
+                mensagemContagem = `Faltam ${-diferencaDias} dias para a nossa data especial!`;
+            } else if (diferencaDias > 0) {
+                mensagemContagem = `Já se passaram ${diferencaDias} dias desde a nossa data especial!`;
+            } else {
+                mensagemContagem = "Hoje é a nossa data especial! Um dia inesquecível!";
+            }
+
+            // Atualiza o conteúdo da página HTML
+            document.getElementById('mensagem-especial').innerText = suaMensagem;
+            document.getElementById('contagem-dias').innerText = mensagemContagem + " Te amo mais a cada dia!";
+        }
+
+        // Chama a função quando a página é carregada
+        calcularEDisplayMensagem();
+    </script>
+</body>
+</html>
